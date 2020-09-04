@@ -31,4 +31,7 @@ function todoReducer(state = [], action) {
   }
 }
 
-export default combineReducers({ filterReducer, todoReducer });
+export default combineReducers({
+  visibilityFilter: filterReducer,
+  todos: todoReducer,
+});
