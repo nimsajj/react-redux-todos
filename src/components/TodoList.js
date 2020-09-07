@@ -6,7 +6,7 @@ const TodoList = ({ todos, onTodoClick }) => {
   const todoList = todos.map((todo) => (
     <Todo key={todo.id} {...todo} onClick={() => onTodoClick(todo.id)} />
   ));
-  return <ul>{todoList}</ul>;
+  return <ul className="list-group list-group-flush">{todoList}</ul>;
 };
 
 TodoList.propTypes = {

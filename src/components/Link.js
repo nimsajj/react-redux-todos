@@ -1,20 +1,23 @@
 import React from "react";
 import { bool, node, func } from "prop-types";
 
-const Link = ({ active, children, onClick }) => {
-  return (
-    <button
-      type="button"
-      onClick={onClick}
-      disabled={active}
-      style={{
-        marginLeft: "4px",
-      }}
-    >
-      {children}
-    </button>
-  );
-};
+const getClassName = (type) =>
+  ({
+    SHOW_ALL: "secondary",
+    SHOW_ACTIVE: "success",
+    SHOW_COMPLETED: "danger",
+  }[type]);
+
+const Link = ({ active, type, children, onClick }) => (
+  <button
+    type="button"
+    onClick={onClick}
+    disabled={active}
+    className={`btn btn-${getClassName(type)} ml-2`}
+  >
+    {children}
+  </button>
+);
 
 Link.propTypes = {
   active: bool.isRequired,
