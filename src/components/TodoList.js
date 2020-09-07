@@ -2,9 +2,14 @@ import React from "react";
 import { arrayOf, shape, string, bool, number, func } from "prop-types";
 import Todo from "./Todo";
 
-const TodoList = ({ todos, onTodoClick }) => {
+const TodoList = ({ todos, onToggleTodo, onRemoveTodo }) => {
   const todoList = todos.map((todo) => (
-    <Todo key={todo.id} {...todo} onClick={() => onTodoClick(todo.id)} />
+    <Todo
+      key={todo.id}
+      {...todo}
+      onCompleted={() => onToggleTodo(todo.id)}
+      onRemoveTodo={() => onRemoveTodo(todo.id)}
+    />
   ));
   return <ul className="list-group list-group-flush">{todoList}</ul>;
 };
@@ -17,7 +22,8 @@ TodoList.propTypes = {
       id: number.isRequired,
     }).isRequired
   ),
-  onTodoClick: func.isRequired,
+  onToggleTodo: func.isRequired,
+  onRemoveTodo: func.isRequired,
 };
 
 export default TodoList;

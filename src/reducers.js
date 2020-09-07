@@ -2,6 +2,7 @@ import { combineReducers } from "redux";
 
 import {
   ADD_TODO,
+  REMOVE_TODO,
   TOGGLE_TODO,
   SET_VISIBILITY_FILTER,
   VisibilityFilters,
@@ -26,6 +27,8 @@ function todoReducer(state = [], action) {
       return state.map((todo) =>
         todo.id === action.id ? { ...todo, completed: !todo.completed } : todo
       );
+    case REMOVE_TODO:
+      return state.filter((todo) => todo.id !== action.id);
     default:
       return state;
   }

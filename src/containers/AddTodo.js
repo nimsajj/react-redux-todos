@@ -15,10 +15,10 @@ const AddTodo = ({ dispatch }) => {
           return;
         }
         dispatch(addTodo(value));
-        value = "";
+        input.current.value = "";
       }}
     >
-      <div class="input-group">
+      <div className="input-group">
         <input
           ref={input}
           className="form-control"

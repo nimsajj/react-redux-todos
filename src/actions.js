@@ -3,6 +3,7 @@
  */
 
 export const ADD_TODO = "ADD_TODO";
+export const REMOVE_TODO = "REMOVE_TODO";
 export const TOGGLE_TODO = "TOGGLE_TODO";
 export const SET_VISIBILITY_FILTER = "SET_VISIBILITY_FILTER";
 
@@ -31,4 +32,8 @@ export function toggleTodo(id) {
 
 export function setVisibilityFilter(filter) {
   return { type: SET_VISIBILITY_FILTER, filter };
+}
+
+export function removeTodo(id) {
+  return { type: REMOVE_TODO, id };
 }
