@@ -22,10 +22,7 @@ const todosSlice = createSlice({
       }
     },
     removeTodo(state, action) {
-      const todoIdx = state.indexOf(action.payload);
-      if (todoIdx > -1) {
-        state.splice(todoIdx, 1);
-      }
+      state.splice(action.payload, 1);
     },
   },
 });
