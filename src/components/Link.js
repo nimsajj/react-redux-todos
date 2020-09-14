@@ -1,19 +1,19 @@
 import React from "react";
-import { bool, node, func } from "prop-types";
+import { bool, node, func, string } from "prop-types";
 
-const getClassName = (type) =>
+const getClassName = (filter) =>
   ({
     SHOW_ALL: "secondary",
     SHOW_ACTIVE: "success",
     SHOW_COMPLETED: "danger",
-  }[type]);
+  }[filter]);
 
-const Link = ({ active, type, children, onClick }) => (
+const Link = ({ active, children, setVisibilityFilter, filter }) => (
   <button
     type="button"
-    onClick={onClick}
+    onClick={() => setVisibilityFilter(filter)}
     disabled={active}
-    className={`btn btn-${getClassName(type)} ml-2`}
+    className={`btn btn-${getClassName(filter)} ml-2`}
   >
     {children}
   </button>
@@ -22,7 +22,8 @@ const Link = ({ active, type, children, onClick }) => (
 Link.propTypes = {
   active: bool.isRequired,
   children: node.isRequired,
-  onClick: func.isRequired,
+  setVisibilityFilter: func.isRequired,
+  filter: string.isRequired,
 };
 
 export default Link;
