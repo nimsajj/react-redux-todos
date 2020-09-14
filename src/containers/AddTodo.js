@@ -1,35 +1,39 @@
-import React, { useRef } from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
-import { addTodo } from "../actions";
+import { addTodo } from "features/todos/todosSlice";
 
-const AddTodo = ({ dispatch }) => {
-  const input = useRef(null);
+const mapDispatch = { addTodo };
+
+const AddTodo = ({ addTodo }) => {
+  const [todoText, setTodoText] = useState("");
+
+  const onChange = (e) => setTodoText(e.target.value);
 
   return (
-    <form
-      onSubmit={(e) => {
-        e.preventDefault();
-        let value = input.current.value.trim();
-
-        if (!value) {
-          return;
-        }
-        dispatch(addTodo(value));
-        input.current.value = "";
-      }}
-    >
-      <div className="input-group">
-        <input
-          ref={input}
-          className="form-control"
-          placeholder="Create a new task"
-        />
-        <button type="submit" className="btn btn-secondary ml-2">
-          Add
-        </button>
-      </div>
-    </form>
+    <div>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          if (!todoText.trim()) {
+            return;
+          }
+          addTodo(todoText);
+          setTodoText("");
+        }}
+      >
+        <div className="input-group">
+          <input
+            value={todoText}
+            onChange={onChange}
+            className="form-control"
+          />
+          <button type="submit" className="btn btn-secondary ml-2">
+            Add Todo
+          </button>
+        </div>
+      </form>
+    </div>
   );
 };
 
-export default connect()(AddTodo);
+export default connect(null, mapDispatch)(AddTodo);
