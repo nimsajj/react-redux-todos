@@ -1,9 +1,9 @@
 import { connect } from "react-redux";
 import { createSelector } from "@reduxjs/toolkit";
-import { toggleTodo, removeTodo } from "../features/todos/todosSlice";
-import { VisibilityFilters } from "../features/filters/filtersSlice";
+import { toggleTodo, removeTodo } from "./todosSlice";
+import { VisibilityFilters } from "../filters/filtersSlice";
 
-import TodoList from "../components/TodoList";
+import TodoList from "./TodoList";
 
 const { SHOW_ALL, SHOW_COMPLETED, SHOW_ACTIVE } = VisibilityFilters;
 

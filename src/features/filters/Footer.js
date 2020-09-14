@@ -1,7 +1,7 @@
 import React from "react";
-import FilterLink from "../containers/FilterLink";
+import FilterLink from "./FilterLink";
 
-import { VisibilityFilters } from "../actions";
+import { VisibilityFilters } from "./filtersSlice";
 
 const { SHOW_ALL, SHOW_ACTIVE, SHOW_COMPLETED } = VisibilityFilters;
 

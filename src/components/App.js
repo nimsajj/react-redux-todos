@@ -1,7 +1,7 @@
 import React from "react";
-import AddTodo from "../containers/AddTodo";
-import VisibleTodoList from "../containers/VisibleTodoList";
-import Footer from "../components/Footer";
+import AddTodo from "../features/todos/AddTodo";
+import VisibleTodoList from "../features/todos/VisibleTodoList";
+import Footer from "../features/filters/Footer";
 
 import Container from "../ui/Container";
 import Card from "../ui/Card";
