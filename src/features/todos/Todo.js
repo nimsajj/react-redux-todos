@@ -1,6 +1,6 @@
 import React from "react";
 import { string, bool, func } from "prop-types";
-import DeleteIcon from "../assets/icons/Delete";
+import DeleteIcon from "../../assets/icons/Delete";
 
 const getStyle = (completed) => ({
   textDecoration: completed ? "line-through" : "none",
