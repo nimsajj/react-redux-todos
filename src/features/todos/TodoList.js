@@ -1,17 +1,10 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import {
-  selectVisibleTodos,
-  fetchTodos,
-  toggleTodo,
-  removeTodo,
-} from "./todosSlice";
+import { selectVisibleTodos, fetchTodos } from "./todosSlice";
 
 import Todo from "./Todo";
 
 const TodoList = () => {
-  //console.log("todo list : ", todos);
-
   const dispatch = useDispatch();
 
   const todos = useSelector(selectVisibleTodos);
@@ -28,14 +21,7 @@ const TodoList = () => {
     case "loading":
       return "Loading ...";
     case "succeeded":
-      const todoList = todos.map((todo) => (
-        <Todo
-          key={todo.id}
-          {...todo}
-          onCompleted={() => toggleTodo(todo.id)}
-          onRemoveTodo={() => removeTodo(todo.id)}
-        />
-      ));
+      const todoList = todos.map((todo) => <Todo key={todo.id} {...todo} />);
       return <ul className="list-group list-group-flush">{todoList}</ul>;
     case "failed":
       return "Error : " + todosError;

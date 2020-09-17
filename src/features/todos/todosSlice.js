@@ -2,7 +2,6 @@ import {
   createSlice,
   createAsyncThunk,
   createSelector,
-  nanoid,
 } from "@reduxjs/toolkit";
 import { client } from "../../api/client";
 import { VisibilityFilters } from "../filters/filtersSlice";
@@ -17,6 +16,10 @@ export const addNewTodo = createAsyncThunk("todos/addNewTodo", async (todo) => {
   return response.todo;
 });
 
+export const removeTodo = createAsyncThunk("todos/removeTodo", async (id) => {
+  return await client.delete(`/api/todos/${id}`);
+});
+
 const initialState = {
   items: [],
   status: "idle",
@@ -28,13 +31,10 @@ const todosSlice = createSlice({
   initialState,
   reducers: {
     toggleTodo(state, action) {
-      const todo = state.find((todo) => todo.id === action.payload);
+      const todo = state.items.find((todo) => todo.id === action.payload);
       if (todo) {
         todo.completed = !todo.completed;
       }
-    },
-    removeTodo(state, action) {
-      state.splice(action.payload, 1);
     },
   },
   extraReducers: {
@@ -55,7 +55,7 @@ const todosSlice = createSlice({
   },
 });
 
-export const { addTodo, toggleTodo, removeTodo } = todosSlice.actions;
+export const { toggleTodo } = todosSlice.actions;
 
 export default todosSlice.reducer;
 
