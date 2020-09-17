@@ -11,7 +11,7 @@ new Server({
       id() {
         return nanoid();
       },
-      name() {
+      text() {
         return faker.lorem.sentence();
       },
       completed() {
