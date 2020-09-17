@@ -12,6 +12,11 @@ export const fetchTodos = createAsyncThunk("todos/fetchTodos", async () => {
   return response.todos;
 });
 
+export const addNewTodo = createAsyncThunk("todos/addNewTodo", async (todo) => {
+  const response = await client.post("/api/todos", todo);
+  return response.todo;
+});
+
 const initialState = {
   items: [],
   status: "idle",
@@ -22,15 +27,6 @@ const todosSlice = createSlice({
   name: "todos",
   initialState,
   reducers: {
-    addTodo: {
-      reducer(state, action) {
-        const { id, text } = action.payload;
-        state.items.push({ id, text, completed: false });
-      },
-      prepare(text) {
-        return { payload: { text, id: nanoid() } };
-      },
-    },
     toggleTodo(state, action) {
       const todo = state.find((todo) => todo.id === action.payload);
       if (todo) {
@@ -52,6 +48,9 @@ const todosSlice = createSlice({
     [fetchTodos.rejected]: (state, action) => {
       state.status = "failed";
       state.error = action.error.message;
+    },
+    [addNewTodo.fulfilled]: (state, action) => {
+      state.items.push(action.payload);
     },
   },
 });

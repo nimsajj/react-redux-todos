@@ -24,7 +24,10 @@ new Server({
 
     this.get("/todos");
     this.get("/todos/:id");
-    this.post("/todos");
+    this.post("/todos", function (schema, request) {
+      const attrs = JSON.parse(request.requestBody);
+      return schema.todos.create({ id: nanoid(), ...attrs });
+    });
     this.patch("/todos/:id");
     this.del("/todos/:id");
   },
